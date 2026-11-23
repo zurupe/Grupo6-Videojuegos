@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://c54j73kmk5e1g"]
+
+[ext_resource type="Script" uid="uid://3rqn1gvev02v" path="res://main.gd" id="1_main"]
+[ext_resource type="Script" uid="uid://c2k6c7rongc2x" path="res://personaje.gd" id="2_pers"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
+size = Vector2(1152, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat"]
+size = Vector2(260, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pers"]
+size = Vector2(36, 48)
+
+[node name="Main" type="Node2D" unique_id=1822977895]
+script = ExtResource("1_main")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=2127570880]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.117647, 0.133333, 0.160784, 1)
+
+[node name="Suelo" type="StaticBody2D" parent="." unique_id=466611933]
+position = Vector2(576, 616)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Suelo" unique_id=1670063950]
+shape = SubResource("RectangleShape2D_suelo")
+
+[node name="ColorRect" type="ColorRect" parent="Suelo" unique_id=1720062804]
+offset_left = -576.0
+offset_top = -32.0
+offset_right = 576.0
+offset_bottom = 32.0
+color = Color(0.235294, 0.27451, 0.329412, 1)
+
+[node name="Plataforma1" type="StaticBody2D" parent="." unique_id=663242792]
+position = Vector2(320, 470)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma1" unique_id=1172659279]
+shape = SubResource("RectangleShape2D_plat")
+
+[node name="ColorRect" type="ColorRect" parent="Plataforma1" unique_id=682302519]
+offset_left = -130.0
+offset_top = -16.0
+offset_right = 130.0
+offset_bottom = 16.0
+color = Color(0.352941, 0.407843, 0.490196, 1)
+
+[node name="Plataforma2" type="StaticBody2D" parent="." unique_id=1604292245]
+position = Vector2(760, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma2" unique_id=1019270540]
+shape = SubResource("RectangleShape2D_plat")
+
+[node name="ColorRect" type="ColorRect" parent="Plataforma2" unique_id=1444587478]
+offset_left = -130.0
+offset_top = -16.0
+offset_right = 130.0
+offset_bottom = 16.0
+color = Color(0.352941, 0.407843, 0.490196, 1)
+
+[node name="Personaje" type="CharacterBody2D" parent="." unique_id=1701266003]
+position = Vector2(240, 400)
+script = ExtResource("2_pers")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Personaje" unique_id=25061597]
+shape = SubResource("RectangleShape2D_pers")
+
+[node name="Visual" type="ColorRect" parent="Personaje" unique_id=1227097508]
+offset_left = -18.0
+offset_top = -24.0
+offset_right = 18.0
+offset_bottom = 24.0
+color = Color(0.2, 0.7, 0.9, 1)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=369466846]
+
+[node name="Panel" type="Panel" parent="HUD" unique_id=812370224]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 490.0
+offset_bottom = 290.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Panel" unique_id=830488247]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="Titulo" type="Label" parent="HUD/Panel/VBoxContainer" unique_id=1267164286]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "DEMO: BUFFER DE ENTRADA & COYOTE TIME"
+
+[node name="HSeparator" type="HSeparator" parent="HUD/Panel/VBoxContainer" unique_id=709705022]
+layout_mode = 2
+
+[node name="LblBuffer" type="Label" parent="HUD/Panel/VBoxContainer" unique_id=1224111828]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Buffer de Entrada: ACTIVADO"
+
+[node name="BarBuffer" type="ProgressBar" parent="HUD/Panel/VBoxContainer" unique_id=267807153]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+show_percentage = false
+
+[node name="LblCoyote" type="Label" parent="HUD/Panel/VBoxContainer" unique_id=340630199]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Coyote Time: ACTIVADO"
+
+[node name="BarCoyote" type="ProgressBar" parent="HUD/Panel/VBoxContainer" unique_id=2116875729]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+show_percentage = false
+
+[node name="LblEstado" type="Label" parent="HUD/Panel/VBoxContainer" unique_id=932291512]
+layout_mode = 2
+text = "Estado: EN EL SUELO"
+
+[node name="HSeparator2" type="HSeparator" parent="HUD/Panel/VBoxContainer" unique_id=2121907019]
+layout_mode = 2
+
+[node name="Controles" type="Label" parent="HUD/Panel/VBoxContainer" unique_id=1555064151]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 13
+text = "[A / D] Mover  |  [ESPACIO / W] Saltar
+[B] Alternar Buffer  |  [C] Alternar Coyote"
